@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Photo;
 use App\Models\User;
 use Hash;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -22,6 +23,8 @@ class UsersTableSeeder extends Seeder
             'password' => Hash::make('123456'),
             'avatar_url' => 'http://localhost:8000/avatars/u1.jpg'
         ]);
-        User::factory(10)->create();
+        User::factory(10)
+            ->has(Photo::factory()->count(5))
+            ->create();
     }
 }
